@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Calorie Counter</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="health_button_string">Health</string>
+    <string name="just_ate_button_string">Just Ate</string>
+    <string name="calendar_button_string">Calendar</string>
+    <string name="meals_button_string">Meals</string>
+    <string name="settings_button_string">Settings</string>
+    <string name="just_ate_text_string">Just Ate</string>
+    <string name="new_food_button_string">New Food</string>
+    <string name="select_food_button_string">Select Food</string>
+    <string name="title_activity_food_log">FoodLog</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_new_food">NewFoodActivity</string>
+    <string name="title_activity_new_meal">NewMealActivity</string>
+    <string name="title_activity_health">HealthActivity</string>
+    <string name="title_activity_select_food">SelectFoodActivity</string>
+    <string name="title_activity_select_meal">SelectMealActivity</string>
+
+</resources>
