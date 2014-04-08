@@ -124,47 +124,50 @@ public class JustAteActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		Log.d("Just Ate", "Entered onActivityResult");
+		Log.d("Just Ate", requestCode + " " + resultCode);
 		
-		// code 0 will return food
-		if (requestCode == 0) {
-			Food food = (Food) data.getParcelableExtra("food");
-			
-			long tempVal = 0;
-			
-			Log.d("Just Ate", "Got requestCode 0");
-			
-			try {
-				foodDB.open();
-				
-				Log.d("Just Ate", "Opened Food Database");
-				
-				if((tempVal = foodDB.getValueId(food.getFoodName())) != -1) {
-					if(foodDB.updateValue(tempVal, food)) {
-						Toast.makeText(this, "Item updated", Toast.LENGTH_LONG).show();
+		if (resultCode == RESULT_OK) {
+			// code 0 will return food
+			if (requestCode == 0) {
+				Food food = (Food) data.getParcelableExtra("food");
+
+				long tempVal = 0;
+
+				Log.d("Just Ate", "Got requestCode 0");
+
+				try {
+					foodDB.open();
+
+					Log.d("Just Ate", "Opened Food Database");
+
+					if ((tempVal = foodDB.getValueId(food.getFoodName())) != -1) {
+						if (foodDB.updateValue(tempVal, food)) {
+							Toast.makeText(this, "Item updated", Toast.LENGTH_LONG).show();
+						} else {
+							Toast.makeText(this, "Update failed", Toast.LENGTH_LONG).show();
+						}
 					} else {
-						Toast.makeText(this, "Update failed", Toast.LENGTH_LONG).show();
+						long id = 0;
+
+						id = foodDB.addValue(food);
+						Toast.makeText(this, "New item inserted", Toast.LENGTH_LONG).show();
 					}
-				} else {
-					long id = 0;
-					
-					id = foodDB.addValue(food);
-					Toast.makeText(this, "New item inserted", Toast.LENGTH_LONG).show();
+
+					foodDB.close();
+
+				} catch (SQLiteException e) {
+					Toast.makeText(this, "Insert failed,  SQL error", Toast.LENGTH_LONG).show();
+				} catch (NumberFormatException e) {
+					Toast.makeText(this,"Insert failed, Number format incorrect", Toast.LENGTH_LONG).show();
 				}
-				
-				foodDB.close();
-				
-			} catch(SQLiteException e) {
-				Toast.makeText(this, "Insert failed,  SQL error", Toast.LENGTH_LONG).show();
-			} catch(NumberFormatException e) {
-				Toast.makeText(this, "Insert failed, Number format incorrect", Toast.LENGTH_LONG).show();
+
+				day.addFood(food);
 			}
-			
-			day.addFood(food);
-		}
-		// code 1 will return meal
-		else if (requestCode == 1) {
-			Meal meal = (Meal) data.getParcelableExtra("meal");
-			day.addMeal(meal);
+			// code 1 will return meal
+			else if (requestCode == 1) {
+				Meal meal = (Meal) data.getParcelableExtra("meal");
+				day.addMeal(meal);
+			}
 		}
 	}
 }

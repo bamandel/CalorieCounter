@@ -75,23 +75,23 @@ public class NewFoodActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_new_food, container, false);
 			
 			etFoodName = (EditText) rootView.findViewById(R.id.etFoodName);
-			//etFoodName.setText("No name");
+			etFoodName.setText("No name");
 			etCalories = (EditText) rootView.findViewById(R.id.etCalories);
-			//etCalories.setText("0");
+			etCalories.setText("0");
 			etPotassium = (EditText) rootView.findViewById(R.id.etPotassium);
-			//etPotassium.setText("0");
+			etPotassium.setText("0");
 			etTotalFat = (EditText) rootView.findViewById(R.id.etTotalFat);
-			//etTotalFat.setText("0");
+			etTotalFat.setText("0");
 			etCholesterol = (EditText) rootView.findViewById(R.id.etCholesterol);
-			//etCholesterol.setText("0");
+			etCholesterol.setText("0");
 			etSodium = (EditText) rootView.findViewById(R.id.etSodium);
-			//etSodium.setText("0");
+			etSodium.setText("0");
 			etTotalCarbs = (EditText) rootView.findViewById(R.id.etTotalCarbs);
-			//etTotalCarbs.setText("0");
+			etTotalCarbs.setText("0");
 			etProtein = (EditText) rootView.findViewById(R.id.etProtein);
-			//etProtein.setText("0");
+			etProtein.setText("0");
 			etServingSize = (EditText) rootView.findViewById(R.id.etServingSize);
-			//etServingSize.setText("0");
+			etServingSize.setText("0");
 			
 			bSubmit = (Button) rootView.findViewById(R.id.bSubmitFood);
 			bCancel = (Button) rootView.findViewById(R.id.bCancelFood);
@@ -101,6 +101,7 @@ public class NewFoodActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					getActivity().setResult(Activity.RESULT_CANCELED);
 					getActivity().finish();
 				}
 				
@@ -110,8 +111,6 @@ public class NewFoodActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					
-					Log.d("NewFoodActivity", "About to load values");
 					
 					try{
 						mFoodName = etFoodName.getText().toString();
@@ -128,8 +127,6 @@ public class NewFoodActivity extends Activity {
 						getActivity().finish();
 					}
 					
-					Log.d("NewFoodActivity", "values for food set");
-					
 					food.setFoodName(mFoodName);
 					food.setCalories(mCalories);
 					food.setPotassium(mPotassium);
@@ -140,11 +137,7 @@ public class NewFoodActivity extends Activity {
 					food.setProtein(mProtein);
 					food.setServingSize(mServingSize);
 					
-					Log.d("NewFoodActivity", "About to setResult");
-					
-					getActivity().setResult(0, new Intent().putExtra("food", food));
-					
-					Log.d("NewFoodActivity", "Result set");
+					getActivity().setResult(Activity.RESULT_OK, new Intent().putExtra("food", food));
 					
 					getActivity().finish();
 				}

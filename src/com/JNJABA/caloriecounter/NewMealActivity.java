@@ -98,7 +98,7 @@ public class NewMealActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					getActivity().startActivityForResult(new Intent(getActivity(),NewFoodActivity.class), 0);
+					getActivity().startActivityForResult(new Intent(getActivity(),NewFoodActivity.class), 1);
 				}
 
 			});
@@ -114,7 +114,7 @@ public class NewMealActivity extends Activity {
 					for (Food food : foods)
 						meal.addFood(food);
 
-					getActivity().setResult(0,new Intent().putExtra("meal", meal));
+					getActivity().setResult(Activity.RESULT_OK,new Intent().putExtra("meal", meal));
 					getActivity().finish();
 				}
 
@@ -125,6 +125,7 @@ public class NewMealActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					getActivity().setResult(Activity.RESULT_CANCELED);
 					getActivity().finish();
 				}
 			});
@@ -137,40 +138,44 @@ public class NewMealActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
+		
 		Log.d("NewMealActivity", "onActivityResult being called");
-		if (requestCode == 0) {
-			Log.d("NewMealActivity", "request met");
+		
+		if (resultCode == RESULT_OK) {
+			if (requestCode == 0) {
+				Log.d("NewMealActivity", "request met");
 
-			final Food food = (Food) data.getParcelableExtra("food");
-			foods.add(food);
+				final Food food = (Food) data.getParcelableExtra("food");
+				foods.add(food);
 
-			final TextView temp = new TextView(this);
+				final TextView temp = new TextView(this);
 
-			temp.setTag(true);
+				temp.setTag(true);
 
-			temp.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					Object obj = v.getTag();
+				temp.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						Object obj = v.getTag();
 
-					if (obj instanceof Boolean) {
-						if (Boolean.TRUE.equals(obj)) {
-							temp.setText(food.toString());
-							v.setTag(false);
-						} else {
-							temp.setText(food.getFoodName());
-							v.setTag(true);
+						if (obj instanceof Boolean) {
+							if (Boolean.TRUE.equals(obj)) {
+								temp.setText(food.toString());
+								v.setTag(false);
+							} else {
+								temp.setText(food.getFoodName());
+								v.setTag(true);
+							}
 						}
 					}
-				}
-			});
+				});
 
-			views.add(temp);
+				views.add(temp);
 
-			temp.setText(food.getFoodName());
+				temp.setText(food.getFoodName());
 
-			llMealFoodText.addView(temp);
+				llMealFoodText.addView(temp);
+			}
 		}
 	}
 

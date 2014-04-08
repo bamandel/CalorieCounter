@@ -12,15 +12,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FoodDatabase {
 	public static final String KEY_ROWID = "_id";
 	
-	public static final String KEY_FOOD_NAME = "food_name";
+	public static final String KEY_FOOD_NAME = "foodName";
 	public static final String KEY_CALORIES = "foodCalories";
 	public static final String KEY_POTASSIUM = "foodPotassium";
-	public static final String KEY_TOTALFAT = "foodTotalfat";
+	public static final String KEY_TOTALFAT = "foodTotalFat";
 	public static final String KEY_CHOLESTEROL = "foodCholesterol";
 	public static final String KEY_SODIUM = "foodSodium";
-	public static final String KEY_TOTALCARBS = "foodTotalcarbs";
+	public static final String KEY_TOTALCARBS = "foodTotalCarbs";
 	public static final String KEY_PROTEIN = "foodProtein";
-	public static final String KEY_SERVING_SIZE = "foodServingSsize";
+	public static final String KEY_SERVING_SIZE = "foodServingSize";
 	
 	private static final String DATABASE_TABLE = "food";
 	
@@ -63,8 +63,8 @@ public class FoodDatabase {
 		long id;
 		
 		try {
-			Cursor c = mDatabase.query(true, DATABASE_TABLE, null, KEY_ROWID + "=" + type, null, null, null, null, null);
-			c.moveToFirst();
+			Cursor c = mDatabase.query(true, DATABASE_TABLE, null, KEY_FOOD_NAME + "='" + type + "'", null, null, null, null, null);
+			//c.moveToFirst();
 			id = c.getLong(c.getColumnIndex(KEY_ROWID));
 		} catch (SQLiteException e) {
 			id = -1;

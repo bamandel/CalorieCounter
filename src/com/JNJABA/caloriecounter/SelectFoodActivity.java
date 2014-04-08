@@ -20,6 +20,7 @@ import android.widget.TextView;
 public class SelectFoodActivity extends Activity {
 	private static FoodDatabase foodDB;
 	private static LinearLayout llFoods;
+	private static Food food;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class SelectFoodActivity extends Activity {
 		setContentView(R.layout.activity_select_food);
 		
 		foodDB = new FoodDatabase(this);
+		food = new Food();
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
@@ -65,15 +67,18 @@ public class SelectFoodActivity extends Activity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_select_food, container, false);
 			
-			final Food food = new Food();
-			
 			try {
 				foodDB.open();
 				final Cursor c = foodDB.getAllValues();
 				
+				if(c.getCount() == 0) {
+					foodDB.close();
+					return rootView;
+				}
+				
 				for (c.moveToFirst(); c.isAfterLast(); c.moveToNext()) {
 					TextView temp = new TextView(getActivity());
-					temp.setText(c.getColumnIndex(FoodDatabase.KEY_FOOD_NAME));
+					temp.setText(c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_NAME)));
 					temp.setOnClickListener(new OnClickListener() {
 
 						@Override
@@ -99,10 +104,14 @@ public class SelectFoodActivity extends Activity {
 
 			}
 			
-			getActivity().setResult(0, new Intent().putExtra("food", food));
-			
 			return rootView;
 		}
 	}
-
+	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		setResult(0, new Intent().putExtra("food", food));
+	}
 }
