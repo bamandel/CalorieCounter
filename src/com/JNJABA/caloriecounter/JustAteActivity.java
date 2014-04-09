@@ -18,8 +18,6 @@ import android.widget.Toast;
 public class JustAteActivity extends Activity {
 	private static Button bNewFood, bNewMeal, bSelectFood, bSelectMeal;
 	private Day day;
-	
-	private FoodDatabase foodDB;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,6 @@ public class JustAteActivity extends Activity {
 		setContentView(R.layout.activity_just_ate);
 
 		day = new Day(null);
-		foodDB = new FoodDatabase(this);
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -130,37 +127,6 @@ public class JustAteActivity extends Activity {
 			// code 0 will return food
 			if (requestCode == 0) {
 				Food food = (Food) data.getParcelableExtra("food");
-
-				long tempVal = 0;
-
-				Log.d("Just Ate", "Got requestCode 0");
-
-				try {
-					foodDB.open();
-
-					Log.d("Just Ate", "Opened Food Database");
-
-					if ((tempVal = foodDB.getValueId(food.getFoodName())) != -1) {
-						if (foodDB.updateValue(tempVal, food)) {
-							Toast.makeText(this, "Item updated", Toast.LENGTH_LONG).show();
-						} else {
-							Toast.makeText(this, "Update failed", Toast.LENGTH_LONG).show();
-						}
-					} else {
-						long id = 0;
-
-						id = foodDB.addValue(food);
-						Toast.makeText(this, "New item inserted", Toast.LENGTH_LONG).show();
-					}
-
-					foodDB.close();
-
-				} catch (SQLiteException e) {
-					Toast.makeText(this, "Insert failed,  SQL error", Toast.LENGTH_LONG).show();
-				} catch (NumberFormatException e) {
-					Toast.makeText(this,"Insert failed, Number format incorrect", Toast.LENGTH_LONG).show();
-				}
-
 				day.addFood(food);
 			}
 			// code 1 will return meal

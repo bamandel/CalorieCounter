@@ -1,6 +1,7 @@
 package com.JNJABA.caloriecounter;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Day {
 	private String mDay;
@@ -10,6 +11,12 @@ public class Day {
 	
 	public Day(String day) {
 		mDay = day;
+		foodsEaten = new ArrayList<Food>();
+		mealsEaten = new ArrayList<Meal>();
+	}
+	
+	public Day() {
+		mDay = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
 		foodsEaten = new ArrayList<Food>();
 		mealsEaten = new ArrayList<Meal>();
 	}
@@ -24,9 +31,15 @@ public class Day {
 	public String getDay() {return mDay;}
 	public void setDay(String day) {mDay = day;}
 	
-	public void addFood(Food food) {foodsEaten.add(food);}
+	public void addFood(Food food) {
+		foodsEaten.add(food);
+		updateDay();
+	}
 	public Food getFoodItem(int item) {return foodsEaten.get(item);}
-	public void addMeal(Meal meal) {mealsEaten.add(meal);}
+	public void addMeal(Meal meal) {
+		mealsEaten.add(meal);
+		updateDay();
+	}
 	public Meal getMealItem(int item) {return mealsEaten.get(item);}
 	
 	public void updateDay() {

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -98,11 +99,21 @@ public class NewMealActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					getActivity().startActivityForResult(new Intent(getActivity(),NewFoodActivity.class), 1);
+					getActivity().startActivityForResult(new Intent(getActivity(),NewFoodActivity.class), 0);
 				}
 
 			});
+			
+			bSelectFood.setOnClickListener(new OnClickListener() {
 
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					getActivity().startActivityForResult(new Intent(getActivity(),SelectFoodActivity.class), 0);
+				}
+				
+			});
+			
 			bSubmit.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -117,7 +128,6 @@ public class NewMealActivity extends Activity {
 					getActivity().setResult(Activity.RESULT_OK,new Intent().putExtra("meal", meal));
 					getActivity().finish();
 				}
-
 			});
 
 			bCancel.setOnClickListener(new OnClickListener() {
@@ -169,10 +179,11 @@ public class NewMealActivity extends Activity {
 						}
 					}
 				});
-
+				
 				views.add(temp);
 
 				temp.setText(food.getFoodName());
+				temp.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
 				llMealFoodText.addView(temp);
 			}

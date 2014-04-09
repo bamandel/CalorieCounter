@@ -16,7 +16,9 @@ public class Meal implements Parcelable{
 	
 	public Meal(Parcel in) {
 		mMealName = in.readString();
-		in.readList(myMeal, null);
+		if(myMeal == null)
+			myMeal = new ArrayList<Food>();
+		in.readTypedList(myMeal, Food.CREATOR);
 	}
 	
 	public Meal(String mealName) {
@@ -66,7 +68,7 @@ public class Meal implements Parcelable{
 	
 	public String toString() {
 		return "Meal: " + mMealName +
-				//getFoodToStrings() +
+				"\n\n" + getFoodToStrings() +
 				"\n\nTotal Calories: " + totalCalories +
 				"\nTotal Fat: " + totalFat +
 				"\nTotal Cholesterol: " + totalCholesterol +
