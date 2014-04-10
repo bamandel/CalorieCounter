@@ -3,7 +3,6 @@ package com.JNJABA.caloriecounter;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.os.Build;
 
 public class NewMealActivity extends Activity {
 	private static String mMealName = null;
@@ -95,31 +93,24 @@ public class NewMealActivity extends Activity {
 					.findViewById(R.id.llMealFoodText);
 
 			bNewFood.setOnClickListener(new OnClickListener() {
-
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					getActivity().startActivityForResult(new Intent(getActivity(),NewFoodActivity.class), 0);
 				}
-
 			});
-			
 			bSelectFood.setOnClickListener(new OnClickListener() {
-
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					getActivity().startActivityForResult(new Intent(getActivity(),SelectFoodActivity.class), 0);
 				}
-				
 			});
 			
 			bSubmit.setOnClickListener(new OnClickListener() {
-
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-
 					meal.setMealName(mMealName);
 
 					for (Food food : foods)
@@ -129,9 +120,7 @@ public class NewMealActivity extends Activity {
 					getActivity().finish();
 				}
 			});
-
 			bCancel.setOnClickListener(new OnClickListener() {
-
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
@@ -139,7 +128,6 @@ public class NewMealActivity extends Activity {
 					getActivity().finish();
 				}
 			});
-
 			return rootView;
 		}
 	}

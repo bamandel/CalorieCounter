@@ -3,7 +3,6 @@ package com.JNJABA.caloriecounter;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
-import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,18 +12,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class JustAteActivity extends Activity {
 	private static Button bNewFood, bNewMeal, bSelectFood, bSelectMeal;
 	private Day day;
+	
+	private FoodDatabase db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_just_ate);
 
-		day = new Day(null);
+		db = new FoodDatabase(this.getApplication());
+		day = new Day();
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -128,6 +129,14 @@ public class JustAteActivity extends Activity {
 			if (requestCode == 0) {
 				Food food = (Food) data.getParcelableExtra("food");
 				day.addFood(food);
+				
+				try {
+					db.open();
+					db.addValue(food);
+					db.close();
+				} catch (Exception e) {
+					Log.d("JustAteActivity", "Database not opened");
+				}
 			}
 			// code 1 will return meal
 			else if (requestCode == 1) {

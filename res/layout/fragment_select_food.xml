@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Food List"
+        android:text="@string/food_list_text_string"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ScrollView
@@ -31,6 +31,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/add" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/minus" />
+
         </LinearLayout>
     </ScrollView>
 

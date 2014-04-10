@@ -24,14 +24,15 @@
                 android:id="@+id/tvMealName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Meal Name:" />
+                android:text="@string/meal_meal_name"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:id="@+id/etMealName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="5"
-                android:hint="Meal name"
+                android:hint="@string/enter_data_hint_string"
                 android:singleLine="true" >
 
                 <requestFocus />
@@ -50,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="New Food" />
+                android:text="@string/new_food_button_string" />
 
             <Button
                 android:id="@+id/bSelectNewFood"
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Select a Food" />
+                android:text="@string/select_food_button_string" />
         </LinearLayout>
 
     </LinearLayout>
@@ -72,13 +73,13 @@
         <LinearLayout
             android:id="@+id/llMealFoodText"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Foods Shown here" />
+                android:hint="@string/enter_data_hint_string" />
         </LinearLayout>
     </ScrollView>
 
@@ -94,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="@string/cancel_button_string" />
 
         <Button
             android:id="@+id/bSubmitMeal"
@@ -102,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Submit" />
+            android:text="@string/submit_button_string" />
     </LinearLayout>
 
 </LinearLayout>

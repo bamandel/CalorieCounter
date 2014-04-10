@@ -1,9 +1,6 @@
 package com.JNJABA.caloriecounter;
 
-import java.util.Calendar;
-
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,15 +9,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainMenuActivity extends Activity implements OnClickListener {
-	private Day day;
-	private AlarmManager alarmManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
-		
-		day = new Day();
 		
 		Button bHealth = (Button) findViewById(R.id.bHealth);
 		bHealth.setOnClickListener(this);

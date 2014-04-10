@@ -18,7 +18,7 @@
             android:id="@+id/ivFoodPic"
             android:layout_width="98dp"
             android:layout_height="69dp"
-            android:contentDescription="Food Picture"
+            android:contentDescription="@string/food_pic"
             android:paddingRight="20dp"
             android:src="@drawable/no_image" />
 
@@ -36,14 +36,14 @@
                     android:id="@+id/tvFoodName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Food Name:" />
+                    android:text="@string/food_food_name" />
 
                 <EditText
                     android:id="@+id/etFoodName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="5"
-                    android:hint="Food name"
+                    android:hint="@string/enter_data_hint_string"
                     android:singleLine="true" />
             </LinearLayout>
 
@@ -56,15 +56,15 @@
                     android:id="@+id/tvServingSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Serving Size:" />
+                    android:text="@string/food_serving_size" />
 
                 <EditText
                     android:id="@+id/etServingSize"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="5"
-                    android:hint="Serving Size"
-                    android:inputType="number"
+                    android:hint="@string/enter_data_hint_string"
+                    android:inputType="numberDecimal"
                     android:singleLine="true" />
             </LinearLayout>
         </LinearLayout>
@@ -72,7 +72,7 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dip"
         android:isScrollContainer="false"
         android:layout_weight="1" >
 
@@ -90,7 +90,7 @@
                     android:id="@+id/tvCalories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Calories:" />
+                    android:text="@string/food_calories" />
 
                 <EditText
                     android:id="@+id/etCalories"
@@ -99,7 +99,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/tvCalories"
                     android:ems="5"
-                    android:hint="Calories"
+                    android:hint="@string/enter_data_hint_string"
                     android:inputType="number"
                     android:singleLine="true" />
             </RelativeLayout>
@@ -113,7 +113,7 @@
                     android:id="@+id/tvPotassium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Potassium:" />
+                    android:text="@string/food_potassium" />
 
                 <EditText
                     android:id="@+id/etPotassium"
@@ -122,7 +122,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/tvPotassium"
                     android:ems="5"
-                    android:hint="Potassium"
+                    android:hint="@string/enter_data_hint_string"
                     android:inputType="number"
                     android:singleLine="true" />
             </RelativeLayout>
@@ -136,7 +136,7 @@
                     android:id="@+id/tvTotalFat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Fat:" />
+                    android:text="@string/food_total_fat" />
 
                 <EditText
                     android:id="@+id/etTotalFat"
@@ -145,7 +145,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/tvTotalFat"
                     android:ems="5"
-                    android:hint="Total Fat"
+                    android:hint="@string/enter_data_hint_string"
                     android:inputType="number"
                     android:singleLine="true" />
             </RelativeLayout>
@@ -159,7 +159,7 @@
                     android:id="@+id/tvCholesterol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cholesterol:" />
+                    android:text="@string/food_cholesterol" />
 
                 <EditText
                     android:id="@+id/etCholesterol"
@@ -168,7 +168,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/tvCholesterol"
                     android:ems="5"
-                    android:hint="Cholesterol"
+                    android:hint="@string/enter_data_hint_string"
                     android:inputType="number"
                     android:singleLine="true" />
             </RelativeLayout>
@@ -182,7 +182,7 @@
                     android:id="@+id/tvSodium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sodium:" />
+                    android:text="@string/food_sodium" />
 
                 <EditText
                     android:id="@+id/etSodium"
@@ -191,7 +191,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/tvSodium"
                     android:ems="5"
-                    android:hint="Sodium"
+                    android:hint="@string/enter_data_hint_string"
                     android:inputType="number"
                     android:singleLine="true" />
             </RelativeLayout>
@@ -205,7 +205,7 @@
                     android:id="@+id/tvTotalCarbs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Carbs:" />
+                    android:text="@string/food_total_carbs" />
 
                 <EditText
                     android:id="@+id/etTotalCarbs"
@@ -214,7 +214,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/tvTotalCarbs"
                     android:ems="5"
-                    android:hint="Total Carbs"
+                    android:hint="@string/enter_data_hint_string"
                     android:inputType="number"
                     android:singleLine="true" />
             </RelativeLayout>
@@ -228,7 +228,7 @@
                     android:id="@+id/tvProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Protein:" />
+                    android:text="@string/food_protein" />
 
                 <EditText
                     android:id="@+id/etProtein"
@@ -237,7 +237,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/tvProtein"
                     android:ems="5"
-                    android:hint="Protein"
+                    android:hint="@string/enter_data_hint_string"
                     android:inputType="number"
                     android:singleLine="true" >
 
@@ -260,7 +260,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scrollbarAlwaysDrawVerticalTrack="false"
-            android:text="Cancel" />
+            android:text="@string/cancel_button_string" />
 
         <Button
             android:id="@+id/bSubmitFood"
@@ -268,7 +268,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Submit" />
+            android:text="@string/submit_button_string" />
     </LinearLayout>
 
 </LinearLayout>

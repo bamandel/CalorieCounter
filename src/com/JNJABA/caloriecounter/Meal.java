@@ -55,7 +55,6 @@ public class Meal implements Parcelable{
 	public int getTotalCarbs() {return totalCarbs;}
 	public int getTotalProtein() {return totalProtein;}
 	
-	@SuppressWarnings("unused")
 	private String getFoodToStrings() {
 		String foods = "";
 		

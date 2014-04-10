@@ -1,13 +1,12 @@
 package com.JNJABA.caloriecounter;
 
-import java.sql.SQLException;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +20,8 @@ public class SelectFoodActivity extends Activity {
 	private static FoodDatabase foodDB;
 	private static LinearLayout llFoods;
 	private static Food food;
+	
+	private static boolean isViewOpen = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,41 +68,53 @@ public class SelectFoodActivity extends Activity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_select_food, container, false);
 			
+			llFoods = (LinearLayout) rootView.findViewById(R.id.llFoods);
+			Food tempFood = new Food();
+			
 			try {
 				foodDB.open();
-				final Cursor c = foodDB.getAllValues();
 				
-				if(c.getCount() == 0) {
-					foodDB.close();
-					return rootView;
-				}
+				Cursor c = foodDB.getValues();
 				
-				for (c.moveToFirst(); c.isAfterLast(); c.moveToNext()) {
-					TextView temp = new TextView(getActivity());
-					temp.setText(c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_NAME)));
-					temp.setOnClickListener(new OnClickListener() {
+				for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+					tempFood.setFoodName(c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_NAME)));
+					tempFood.setCalories(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_CALORIES)))));
+					tempFood.setCholesterol(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_CHOLESTEROL)))));
+					tempFood.setPotassium(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_POTASSIUM)))));
+					tempFood.setProtein(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_PROTEIN)))));
+					tempFood.setSodium(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_SODIUM)))));
+					tempFood.setTotalCarbs(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_TOTAL_CARBS)))));
+					tempFood.setTotalFat(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_TOTAL_FAT)))));
+					tempFood.setServingSize(Double.parseDouble((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_SERVING_SIZE)))));
+					
+					final TextView temp = new TextView(getActivity());
 
+					temp.setTag(true);
+
+					temp.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
 							// TODO Auto-generated method stub
-							food.setFoodName(c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_NAME)));
-							food.setCalories(c.getInt(c.getColumnIndex(FoodDatabase.KEY_CALORIES)));
-							food.setPotassium(c.getInt(c.getColumnIndex(FoodDatabase.KEY_POTASSIUM)));
-							food.setTotalFat(c.getInt(c.getColumnIndex(FoodDatabase.KEY_TOTALFAT)));
-							food.setCholesterol(c.getInt(c.getColumnIndex(FoodDatabase.KEY_CHOLESTEROL)));
-							food.setSodium(c.getInt(c.getColumnIndex(FoodDatabase.KEY_SODIUM)));
-							food.setTotalCarbs(c.getInt(c.getColumnIndex(FoodDatabase.KEY_TOTALCARBS)));
-							food.setProtein(c.getInt(c.getColumnIndex(FoodDatabase.KEY_PROTEIN)));
-							food.setServingSize(c.getDouble(c.getColumnIndex(FoodDatabase.KEY_SERVING_SIZE)));
-						}
+							Object obj = v.getTag();
 
+							if (obj instanceof Boolean) {
+								if (Boolean.TRUE.equals(obj)) {
+									temp.setText(food.toString());
+									v.setTag(false);
+								} else {
+									temp.setText(food.getFoodName());
+									v.setTag(true);
+								}
+							}
+						}
 					});
+					
 					llFoods.addView(temp);
 				}
 				
 				foodDB.close();
 			} catch (SQLiteException e) {
-
+				Log.d("SelectFoodActivity", "Error starting DB");
 			}
 			
 			return rootView;

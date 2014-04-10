@@ -22,63 +22,68 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int no_image=0x7f020001;
+        public static final int add=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int minus=0x7f020002;
+        public static final int no_image=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f080034;
-        public static final int bAddNewFood=0x7f08002e;
+        public static final int action_settings=0x7f080037;
+        public static final int bAddNewFood=0x7f08002d;
         public static final int bCalendar=0x7f080004;
-        public static final int bCancelFood=0x7f08002a;
-        public static final int bCancelMeal=0x7f080031;
+        public static final int bCancelFood=0x7f080029;
+        public static final int bCancelMeal=0x7f080030;
         public static final int bHealth=0x7f080002;
         public static final int bJustAte=0x7f080003;
-        public static final int bNewFood=0x7f080014;
-        public static final int bNewMeal=0x7f080016;
-        public static final int bSelectFood=0x7f080013;
-        public static final int bSelectMeal=0x7f080015;
-        public static final int bSelectNewFood=0x7f08002f;
+        public static final int bNewFood=0x7f080013;
+        public static final int bNewMeal=0x7f080015;
+        public static final int bSelectFood=0x7f080012;
+        public static final int bSelectMeal=0x7f080014;
+        public static final int bSelectNewFood=0x7f08002e;
         public static final int bSettings=0x7f080005;
-        public static final int bSubmitFood=0x7f08002b;
-        public static final int bSubmitMeal=0x7f080032;
+        public static final int bSubmitFood=0x7f08002a;
+        public static final int bSubmitMeal=0x7f080031;
+        public static final int button1=0x7f080034;
+        public static final int button2=0x7f080035;
         public static final int container=0x7f080000;
-        public static final int etCalories=0x7f08001d;
-        public static final int etCholesterol=0x7f080023;
-        public static final int etFoodName=0x7f080019;
-        public static final int etMealName=0x7f08002d;
-        public static final int etPotassium=0x7f08001f;
-        public static final int etProtein=0x7f080029;
-        public static final int etServingSize=0x7f08001b;
-        public static final int etSodium=0x7f080025;
-        public static final int etTotalCarbs=0x7f080027;
-        public static final int etTotalFat=0x7f080021;
-        public static final int ivFoodPic=0x7f080017;
+        public static final int etCalories=0x7f08001c;
+        public static final int etCholesterol=0x7f080022;
+        public static final int etFoodName=0x7f080018;
+        public static final int etMealName=0x7f08002c;
+        public static final int etPotassium=0x7f08001e;
+        public static final int etProtein=0x7f080028;
+        public static final int etServingSize=0x7f08001a;
+        public static final int etSodium=0x7f080024;
+        public static final int etTotalCarbs=0x7f080026;
+        public static final int etTotalFat=0x7f080020;
+        public static final int ivFoodPic=0x7f080016;
+        public static final int llDailyFoods=0x7f08000c;
+        public static final int llDailyNutrition=0x7f080008;
         public static final int llFoods=0x7f080033;
-        public static final int llMealFoodText=0x7f080030;
+        public static final int llMealFoodText=0x7f08002f;
+        public static final int llMeals=0x7f080036;
         public static final int scrollView1=0x7f080007;
-        public static final int scrollView2=0x7f08000c;
-        public static final int textView1=0x7f080006;
-        public static final int textView2=0x7f080010;
-        public static final int textView3=0x7f080009;
-        public static final int textView4=0x7f08000a;
-        public static final int textView44=0x7f080011;
-        public static final int textView5=0x7f080008;
-        public static final int textView6=0x7f08000b;
-        public static final int textView66=0x7f08000d;
-        public static final int textView67=0x7f08000e;
-        public static final int textView68=0x7f08000f;
-        public static final int tvCalories=0x7f08001c;
-        public static final int tvCholesterol=0x7f080022;
-        public static final int tvFoodName=0x7f080018;
-        public static final int tvJustAteActivity=0x7f080012;
+        public static final int scrollView2=0x7f08000b;
+        public static final int textView1=0x7f080032;
+        public static final int tvCalories=0x7f08001b;
+        public static final int tvCholesterol=0x7f080021;
+        public static final int tvDailyActivityLevel=0x7f080010;
+        public static final int tvDailyActivityLevelString=0x7f08000f;
+        public static final int tvDailyFood=0x7f08000d;
+        public static final int tvDailyFoodHint=0x7f08000e;
+        public static final int tvDailyFoodTitle=0x7f080006;
+        public static final int tvDailyNutrition=0x7f080009;
+        public static final int tvDailyNutritionHint=0x7f08000a;
+        public static final int tvFoodName=0x7f080017;
+        public static final int tvJustAteActivity=0x7f080011;
         public static final int tvLogo=0x7f080001;
-        public static final int tvMealName=0x7f08002c;
-        public static final int tvPotassium=0x7f08001e;
-        public static final int tvProtein=0x7f080028;
-        public static final int tvServingSize=0x7f08001a;
-        public static final int tvSodium=0x7f080024;
-        public static final int tvTotalCarbs=0x7f080026;
-        public static final int tvTotalFat=0x7f080020;
+        public static final int tvMealName=0x7f08002b;
+        public static final int tvPotassium=0x7f08001d;
+        public static final int tvProtein=0x7f080027;
+        public static final int tvServingSize=0x7f080019;
+        public static final int tvSodium=0x7f080023;
+        public static final int tvTotalCarbs=0x7f080025;
+        public static final int tvTotalFat=0x7f08001f;
     }
     public static final class layout {
         public static final int activity_health=0x7f030000;
@@ -105,24 +110,56 @@ public final class R {
         public static final int select_meal=0x7f070006;
     }
     public static final class string {
-        public static final int action_settings=0x7f05000c;
+        public static final int action_settings=0x7f050002;
+        public static final int activity_level_text_string=0x7f050018;
         public static final int app_name=0x7f050000;
-        public static final int calendar_button_string=0x7f050004;
-        public static final int health_button_string=0x7f050002;
-        public static final int hello_world=0x7f05000b;
-        public static final int just_ate_button_string=0x7f050003;
-        public static final int just_ate_text_string=0x7f050007;
-        public static final int meals_button_string=0x7f050005;
-        public static final int new_food_button_string=0x7f050008;
-        public static final int select_food_button_string=0x7f050009;
-        public static final int settings_button_string=0x7f050006;
-        public static final int title_activity_food_log=0x7f05000a;
-        public static final int title_activity_health=0x7f05000f;
-        public static final int title_activity_main_menu=0x7f050001;
-        public static final int title_activity_new_food=0x7f05000d;
-        public static final int title_activity_new_meal=0x7f05000e;
-        public static final int title_activity_select_food=0x7f050010;
-        public static final int title_activity_select_meal=0x7f050011;
+        public static final int calendar_button_string=0x7f05000c;
+        public static final int cancel_button_string=0x7f050013;
+        public static final int daily_dosage_text_string=0x7f050015;
+        public static final int daily_foods_text_string=0x7f050017;
+        public static final int daily_nutrition_text_string=0x7f050016;
+        public static final int enter_data_hint_string=0x7f050026;
+        public static final int food_calories=0x7f05001b;
+        public static final int food_cholesterol=0x7f05001d;
+        public static final int food_food_name=0x7f050019;
+        public static final int food_list_text_string=0x7f050023;
+        /**  Picture descriptions 
+         */
+        public static final int food_pic=0x7f050027;
+        public static final int food_potassium=0x7f05001c;
+        public static final int food_protein=0x7f050020;
+        public static final int food_serving_size=0x7f05001a;
+        public static final int food_sodium=0x7f050021;
+        public static final int food_total_carbs=0x7f05001f;
+        public static final int food_total_fat=0x7f05001e;
+        /**  Button Strings 
+         */
+        public static final int health_button_string=0x7f05000a;
+        public static final int hello_world=0x7f050001;
+        public static final int just_ate_button_string=0x7f05000b;
+        /**  Text Strings 
+         */
+        public static final int just_ate_text_string=0x7f050014;
+        public static final int meal_list_text_string=0x7f050024;
+        public static final int meal_meal_name=0x7f050022;
+        public static final int new_food_button_string=0x7f050010;
+        public static final int new_meal_button_string=0x7f05000e;
+        /**  Text hints 
+         */
+        public static final int not_yet_recorded_hint_string=0x7f050025;
+        public static final int select_food_button_string=0x7f050011;
+        public static final int select_meals_button_string=0x7f05000f;
+        public static final int settings_button_string=0x7f05000d;
+        public static final int submit_button_string=0x7f050012;
+        public static final int title_activity_food_log=0x7f050004;
+        public static final int title_activity_health=0x7f050007;
+        /**  Titles 
+         */
+        public static final int title_activity_main_menu=0x7f050003;
+        public static final int title_activity_new_food=0x7f050005;
+        public static final int title_activity_new_meal=0x7f050006;
+        public static final int title_activity_select_food=0x7f050008;
+        public static final int title_activity_select_meal=0x7f050009;
     }
     public static final class style {
         /** 

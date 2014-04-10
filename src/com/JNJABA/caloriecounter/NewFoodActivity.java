@@ -3,9 +3,7 @@ package com.JNJABA.caloriecounter;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class NewFoodActivity extends Activity {
 	private static String mFoodName = null;
@@ -22,7 +19,7 @@ public class NewFoodActivity extends Activity {
 	private static double mServingSize = -1;
 	
 	private static EditText etFoodName, etCalories, etPotassium, etTotalFat, etCholesterol, etSodium, etTotalCarbs, etProtein, etServingSize;
-	private static Bitmap foodPic = null;
+	//private static Bitmap foodPic = null;
 	
 	private static Food food;
 	
