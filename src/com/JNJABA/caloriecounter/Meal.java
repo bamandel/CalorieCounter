@@ -8,7 +8,7 @@ import android.os.Parcelable;
 public class Meal implements Parcelable{
 	private String mMealName;
 	private ArrayList<Food> myMeal;
-	private int totalCalories, totalFat, totalCholesterol, totalSodium, totalCarbs, totalProtein = 0;
+	private int totalCalories, totalFat, totalCholesterol, totalSodium, totalCarbs, totalProtein, totalPotassium = 0;
 	
 	public Meal() {
 		myMeal = new ArrayList<Food>();
@@ -41,6 +41,7 @@ public class Meal implements Parcelable{
 			totalSodium += myMeal.get(i).getSodium();
 			totalCarbs += myMeal.get(i).getTotalCarbs();
 			totalProtein += myMeal.get(i).getProtein();
+			totalPotassium += myMeal.get(i).getPotassium();
 		}
 	}
 
@@ -54,6 +55,7 @@ public class Meal implements Parcelable{
 	public int getTotalSodium() {return totalSodium;}
 	public int getTotalCarbs() {return totalCarbs;}
 	public int getTotalProtein() {return totalProtein;}
+	public int getTotalPotassium() {return totalPotassium;}
 	
 	private String getFoodToStrings() {
 		String foods = "";
@@ -72,6 +74,7 @@ public class Meal implements Parcelable{
 				"\nTotal Fat: " + totalFat +
 				"\nTotal Cholesterol: " + totalCholesterol +
 				"\nTotal Sodium: " + totalSodium +
+				"\nTotal Potassium: " + totalPotassium +
 				"\nTotal Carbs: " + totalCarbs +
 				"\nTotal Protein: " + totalProtein;
 	}

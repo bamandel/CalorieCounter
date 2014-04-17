@@ -19,9 +19,6 @@ import android.widget.TextView;
 public class SelectFoodActivity extends Activity {
 	private static FoodDatabase foodDB;
 	private static LinearLayout llFoods;
-	private static Food food;
-	
-	private static boolean isViewOpen = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +26,6 @@ public class SelectFoodActivity extends Activity {
 		setContentView(R.layout.activity_select_food);
 		
 		foodDB = new FoodDatabase(this);
-		food = new Food();
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
@@ -69,7 +65,7 @@ public class SelectFoodActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_select_food, container, false);
 			
 			llFoods = (LinearLayout) rootView.findViewById(R.id.llFoods);
-			Food tempFood = new Food();
+			final Food tempFood = new Food();
 			
 			try {
 				foodDB.open();
@@ -77,41 +73,32 @@ public class SelectFoodActivity extends Activity {
 				Cursor c = foodDB.getValues();
 				
 				for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-					tempFood.setFoodName(c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_NAME)));
-					tempFood.setCalories(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_CALORIES)))));
-					tempFood.setCholesterol(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_CHOLESTEROL)))));
-					tempFood.setPotassium(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_POTASSIUM)))));
-					tempFood.setProtein(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_PROTEIN)))));
-					tempFood.setSodium(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_SODIUM)))));
-					tempFood.setTotalCarbs(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_TOTAL_CARBS)))));
-					tempFood.setTotalFat(Integer.parseInt((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_TOTAL_FAT)))));
-					tempFood.setServingSize(Double.parseDouble((c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOOD_SERVING_SIZE)))));
+					tempFood.setFoodName(c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_NAME)));
+					tempFood.setCalories(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_CALORIES)))));
+					tempFood.setCholesterol(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_CHOLESTEROL)))));
+					tempFood.setPotassium(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_POTASSIUM)))));
+					tempFood.setProtein(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_PROTEIN)))));
+					tempFood.setSodium(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_SODIUM)))));
+					tempFood.setTotalCarbs(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_TOTAL_CARBS)))));
+					tempFood.setTotalFat(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_TOTAL_FAT)))));
+					tempFood.setServingSize(Double.parseDouble((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_SERVING_SIZE)))));
 					
 					final TextView temp = new TextView(getActivity());
-
-					temp.setTag(true);
-
+					temp.setText(tempFood.getFoodName());
 					temp.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
 							// TODO Auto-generated method stub
-							Object obj = v.getTag();
-
-							if (obj instanceof Boolean) {
-								if (Boolean.TRUE.equals(obj)) {
-									temp.setText(food.toString());
-									v.setTag(false);
-								} else {
-									temp.setText(food.getFoodName());
-									v.setTag(true);
-								}
-							}
+							getActivity().setResult(Activity.RESULT_OK, new Intent().putExtra("food", tempFood));
+							getActivity().finish();
 						}
 					});
 					
 					llFoods.addView(temp);
 				}
 				
+				c.close();
+
 				foodDB.close();
 			} catch (SQLiteException e) {
 				Log.d("SelectFoodActivity", "Error starting DB");
@@ -122,9 +109,8 @@ public class SelectFoodActivity extends Activity {
 	}
 	
 	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		setResult(0, new Intent().putExtra("food", food));
+	public void onBackPressed() {
+		super.onBackPressed();
+		setResult(RESULT_CANCELED);
 	}
 }

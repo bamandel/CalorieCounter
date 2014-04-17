@@ -3,36 +3,42 @@ package com.JNJABA.caloriecounter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import android.util.Log;
+
 public class Day {
-	private String mDay;
-	private ArrayList<Food> foodsEaten;
-	private ArrayList<Meal> mealsEaten;
-	private int totalCalories, totalFat, totalCholesterol, totalSodium, totalCarbs, totalProtein = 0;
-	
-	public Day(String day) {
-		mDay = day;
-		foodsEaten = new ArrayList<Food>();
-		mealsEaten = new ArrayList<Meal>();
-	}
+	private static String mDay;
+	private static final ArrayList<Food> foodsEaten = new ArrayList<Food>();
+	private static final ArrayList<Meal> mealsEaten = new ArrayList<Meal>();
+	private static int totalCalories, totalFat, totalCholesterol, totalSodium, totalCarbs, totalProtein, totalPotassium = 0;
 	
 	public Day() {
 		mDay = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
-		foodsEaten = new ArrayList<Food>();
-		mealsEaten = new ArrayList<Meal>();
-	}
-	
-	public Day(ArrayList<Food> foods, ArrayList<Meal> meals) {
-		foodsEaten = foods;
-		mealsEaten = meals;
 		
-		updateDay();
+		resetValues();
 	}
 	
-	public String getDay() {return mDay;}
+	public static class Holder {
+		private static final Day INSTANCE = new Day();
+	}
+	
+	public static Day getInstance() {
+		return Holder.INSTANCE;
+	}
+	
+	public boolean isEmpty() {
+		if(foodsEaten.isEmpty())
+			if(mealsEaten.isEmpty())
+				return true;
+		return false;
+	}
+	
+	public String getDayName() {return mDay;}
 	public void setDay(String day) {mDay = day;}
 	
 	public void addFood(Food food) {
+		Log.d("Day", "WHY ISNT THIS WORKING??");
 		foodsEaten.add(food);
+		Log.d("Day", "Food added");
 		updateDay();
 	}
 	public Food getFoodItem(int item) {return foodsEaten.get(item);}
@@ -42,8 +48,15 @@ public class Day {
 	}
 	public Meal getMealItem(int item) {return mealsEaten.get(item);}
 	
+	public ArrayList<Food> getFoods() {
+		return foodsEaten;
+	}
+	
+	public ArrayList<Meal> getMeals() {
+		return mealsEaten;
+	}
+	
 	public void updateDay() {
-		resetValues();
 		
 		for(int i = 0; i < foodsEaten.size(); i++) {
 			totalCalories += foodsEaten.get(i).getCalories();
@@ -52,6 +65,7 @@ public class Day {
 			totalSodium += foodsEaten.get(i).getSodium();
 			totalCarbs += foodsEaten.get(i).getTotalCarbs();
 			totalProtein += foodsEaten.get(i).getProtein();
+			totalPotassium += foodsEaten.get(i).getPotassium();
 		}
 		for(int i = 0; i < mealsEaten.size(); i++) {
 			totalCalories += mealsEaten.get(i).getTotalCalories();
@@ -60,6 +74,7 @@ public class Day {
 			totalSodium += mealsEaten.get(i).getTotalSodium();
 			totalCarbs += mealsEaten.get(i).getTotalCarbs();
 			totalProtein += mealsEaten.get(i).getTotalProtein();
+			totalPotassium += mealsEaten.get(i).getTotalPotassium();
 		}
 	}
 	
@@ -70,6 +85,13 @@ public class Day {
 		totalSodium = 0;
 		totalCarbs = 0;
 		totalProtein = 0;
+		totalPotassium = 0;
+	}
+	
+	public void resetDay() {
+		String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+		
+		resetValues();
 	}
 	
 	public int getTotalCalories() {return totalCalories;}
@@ -105,30 +127,13 @@ public class Day {
 				mealsToString();
 	}
 	
-	public static void main(String []args) {
-		Food snapple = new Food("Snapple", 10, 0, 0, 0, 15, 1, 0, 20);
-		Food arnoldPalmer = new Food("Arnold Palmer", 80, 0, 0, 0, 15, 21, 0, 11.5);
-		Food sprite = new Food("Sprite", 140, 1, 1, 1, 65, 38, 1, 12);
-		Day today = new Day("Tuesday");
-		
-		Meal dinner = new Meal("Dinner");
-		dinner.addFood(sprite);
-		dinner.addFood(arnoldPalmer);
-		dinner.addFood(snapple);
-		dinner.updateMeal();
-		
-		arnoldPalmer.addFatNutrition("Saturated Fat", 0);
-		arnoldPalmer.addFatNutrition("Trans Fat", 10);
-		
-		sprite.addCarbNutrition("Sugars", 38);
-
-		today.addFood(sprite);
-		today.addFood(snapple);
-		today.addFood(arnoldPalmer);
-		today.addMeal(dinner);
-		today.updateDay();
-		
-		System.out.println(today.toString());
+	public String nutritionToString() {
+		return "Today's Calories: " + totalCalories + "\n" +
+				"Today's Total Fat: " + totalFat + "\n" +
+				"Today's Cholesterol: " + totalCholesterol + "\n" +
+				"Today's Sodium: " + totalSodium + "\n" +
+				"Today's Potassium: " + totalPotassium + "\n" +
+				"Today's Carbs: " + totalCarbs + "\n" +
+				"Today's Protein: " + totalProtein;
 	}
-	
 }

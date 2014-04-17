@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,11 +26,14 @@ public class NewFoodActivity extends Activity {
 	
 	private static Button bCancel, bSubmit;
 	
+	private static FoodDatabase db;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_food);
 		
+		db = new FoodDatabase(this);
 		food = new Food();
 		
 		if (savedInstanceState == null) {
@@ -151,6 +155,14 @@ public class NewFoodActivity extends Activity {
 					food.setTotalCarbs(mTotalCarbs);
 					food.setProtein(mProtein);
 					food.setServingSize(mServingSize);
+					
+					try {
+						db.open();
+						db.addValue(food);
+						db.close();
+					} catch (Exception e) {
+						Log.d("JustAteActivity", "Database not opened");
+					}
 					
 					getActivity().setResult(Activity.RESULT_OK, new Intent().putExtra("food", food));
 					getActivity().finish();

@@ -16,16 +16,13 @@ import android.widget.Button;
 public class JustAteActivity extends Activity {
 	private static Button bNewFood, bNewMeal, bSelectFood, bSelectMeal;
 	private Day day;
-	
-	private FoodDatabase db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_just_ate);
 
-		db = new FoodDatabase(this.getApplication());
-		day = new Day();
+		day = Day.getInstance();
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -124,25 +121,21 @@ public class JustAteActivity extends Activity {
 		Log.d("Just Ate", "Entered onActivityResult");
 		Log.d("Just Ate", requestCode + " " + resultCode);
 		
-		if (resultCode == RESULT_OK) {
+		if (resultCode == RESULT_OK && data != null) {
 			// code 0 will return food
 			if (requestCode == 0) {
+				Log.d("Just Ate", "getting food");
 				Food food = (Food) data.getParcelableExtra("food");
+				Log.d("Just Ate", "storing food");
 				day.addFood(food);
-				
-				try {
-					db.open();
-					db.addValue(food);
-					db.close();
-				} catch (Exception e) {
-					Log.d("JustAteActivity", "Database not opened");
-				}
 			}
 			// code 1 will return meal
 			else if (requestCode == 1) {
+				Log.d("Just Ate", "storing meal");
 				Meal meal = (Meal) data.getParcelableExtra("meal");
 				day.addMeal(meal);
 			}
 		}
 	}
+	
 }

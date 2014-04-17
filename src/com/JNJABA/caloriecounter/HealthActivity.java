@@ -1,20 +1,29 @@
 package com.JNJABA.caloriecounter;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class HealthActivity extends Activity {
+	private static Day day;
+	private static LinearLayout llDailyFoods, llDailyNutrition;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_health);
+
+		day = Day.getInstance();
 
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -55,8 +64,58 @@ public class HealthActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_health,
 					container, false);
+
+			if ( day != null) {
+				Log.d("HealthActivity", "Day is not null");
+				
+				llDailyFoods = (LinearLayout) rootView.findViewById(R.id.llDailyFoods);
+				llDailyNutrition = (LinearLayout) rootView.findViewById(R.id.llDailyNutrition);
+				
+				llDailyFoods.removeAllViews();
+				llDailyNutrition.removeAllViews();
+
+				ArrayList<Food> foodsEaten = day.getFoods();
+				ArrayList<Meal> mealsEaten = day.getMeals();
+
+				Log.d("HealthActivity", "Lists created");
+				
+				if (!foodsEaten.isEmpty()) {
+					Log.d("HealthActivity", "Foods is not empty");
+					for (int i = 0; i < foodsEaten.size(); i++) {
+						TextView foodView = new TextView(getActivity());
+						Log.d("HealthActivity", "getting food name");
+						
+						foodView.setText(foodsEaten.get(i).getFoodName());
+						Log.d("HealthActivity", "Not adding View???");
+						llDailyFoods.addView(foodView);
+						Log.d("HealthActivity", foodsEaten.get(i).getFoodName());
+					}
+				}
+				
+				if (!mealsEaten.isEmpty()) {
+					Log.d("HealthActivity", "Meals is not empty");
+					for (Meal meal : mealsEaten) {
+						for (Food food : meal.getFoods()) {
+							TextView foodView = new TextView(getActivity());
+
+							foodView.setText(food.getFoodName());
+							llDailyFoods.addView(foodView);
+						}
+					}
+				}
+				
+				Log.d("HealthActivity", "Setting up Nutrition");
+				
+				TextView nutrition = new TextView(getActivity());
+				nutrition.setText(day.nutritionToString());
+
+				llDailyNutrition.addView(nutrition);
+				
+				Log.d("HealthActivity", "Everything is setup");
+			}
+
 			return rootView;
 		}
 	}
-
+	
 }

@@ -3,17 +3,22 @@ package com.JNJABA.caloriecounter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainMenuActivity extends Activity implements OnClickListener {
+	private Day day;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
+		
+		if(Day.getInstance() == null)
+			day = new Day();
 		
 		Button bHealth = (Button) findViewById(R.id.bHealth);
 		bHealth.setOnClickListener(this);
@@ -53,4 +58,25 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		return true;
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (resultCode == RESULT_OK) {
+			// code 0 will return food
+			if (requestCode == 0) {
+				Log.d("MainMenuActivity", "Day set");
+				if(day.isEmpty()) {
+					Log.d("MainMenuActivity", "day is empty and so set to null");
+					day = null;
+				}
+			}
+			else {
+				day = null;
+				Log.d("MainMenuActivity", "request is 0 so day is null");
+			}
+		}
+	}
+	
 }

@@ -28,7 +28,7 @@ public final class R {
         public static final int no_image=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f080037;
+        public static final int action_settings=0x7f080035;
         public static final int bAddNewFood=0x7f08002d;
         public static final int bCalendar=0x7f080004;
         public static final int bCancelFood=0x7f080029;
@@ -43,8 +43,6 @@ public final class R {
         public static final int bSettings=0x7f080005;
         public static final int bSubmitFood=0x7f08002a;
         public static final int bSubmitMeal=0x7f080031;
-        public static final int button1=0x7f080034;
-        public static final int button2=0x7f080035;
         public static final int container=0x7f080000;
         public static final int etCalories=0x7f08001c;
         public static final int etCholesterol=0x7f080022;
@@ -61,7 +59,7 @@ public final class R {
         public static final int llDailyNutrition=0x7f080008;
         public static final int llFoods=0x7f080033;
         public static final int llMealFoodText=0x7f08002f;
-        public static final int llMeals=0x7f080036;
+        public static final int llMeals=0x7f080034;
         public static final int scrollView1=0x7f080007;
         public static final int scrollView2=0x7f08000b;
         public static final int textView1=0x7f080032;
@@ -137,8 +135,6 @@ public final class R {
         public static final int health_button_string=0x7f05000a;
         public static final int hello_world=0x7f050001;
         public static final int just_ate_button_string=0x7f05000b;
-        /**  Text Strings 
-         */
         public static final int just_ate_text_string=0x7f050014;
         public static final int meal_list_text_string=0x7f050024;
         public static final int meal_meal_name=0x7f050022;
