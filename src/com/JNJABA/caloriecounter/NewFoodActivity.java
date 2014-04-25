@@ -26,14 +26,14 @@ public class NewFoodActivity extends Activity {
 	
 	private static Button bCancel, bSubmit;
 	
-	private static FoodDatabase db;
+	private static Database db;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_food);
 		
-		db = new FoodDatabase(this);
+		db = new Database(this);
 		food = new Food();
 		
 		if (savedInstanceState == null) {
@@ -158,10 +158,10 @@ public class NewFoodActivity extends Activity {
 					
 					try {
 						db.open();
-						db.addValue(food);
+						db.addFoodValue(food);
 						db.close();
 					} catch (Exception e) {
-						Log.d("JustAteActivity", "Database not opened");
+						Log.d("NewFoodActivity", "Database not opened");
 					}
 					
 					getActivity().setResult(Activity.RESULT_OK, new Intent().putExtra("food", food));

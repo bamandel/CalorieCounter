@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SelectFoodActivity extends Activity {
-	private static FoodDatabase foodDB;
+	private static Database foodDB;
 	private static LinearLayout llFoods;
 	
 	@Override
@@ -25,7 +25,7 @@ public class SelectFoodActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_food);
 		
-		foodDB = new FoodDatabase(this);
+		foodDB = new Database(this);
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
@@ -70,18 +70,18 @@ public class SelectFoodActivity extends Activity {
 			try {
 				foodDB.open();
 				
-				Cursor c = foodDB.getValues();
+				Cursor c = foodDB.getFoodValues();
 				
 				for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-					tempFood.setFoodName(c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_NAME)));
-					tempFood.setCalories(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_CALORIES)))));
-					tempFood.setCholesterol(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_CHOLESTEROL)))));
-					tempFood.setPotassium(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_POTASSIUM)))));
-					tempFood.setProtein(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_PROTEIN)))));
-					tempFood.setSodium(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_SODIUM)))));
-					tempFood.setTotalCarbs(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_TOTAL_CARBS)))));
-					tempFood.setTotalFat(Integer.parseInt((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_TOTAL_FAT)))));
-					tempFood.setServingSize(Double.parseDouble((c.getString(c.getColumnIndex(FoodDatabase.KEY_FOOD_SERVING_SIZE)))));
+					tempFood.setFoodName(c.getString(c.getColumnIndex(Database.KEY_FOOD_NAME)));
+					tempFood.setCalories(Integer.parseInt((c.getString(c.getColumnIndex(Database.KEY_FOOD_CALORIES)))));
+					tempFood.setCholesterol(Integer.parseInt((c.getString(c.getColumnIndex(Database.KEY_FOOD_CHOLESTEROL)))));
+					tempFood.setPotassium(Integer.parseInt((c.getString(c.getColumnIndex(Database.KEY_FOOD_POTASSIUM)))));
+					tempFood.setProtein(Integer.parseInt((c.getString(c.getColumnIndex(Database.KEY_FOOD_PROTEIN)))));
+					tempFood.setSodium(Integer.parseInt((c.getString(c.getColumnIndex(Database.KEY_FOOD_SODIUM)))));
+					tempFood.setTotalCarbs(Integer.parseInt((c.getString(c.getColumnIndex(Database.KEY_FOOD_TOTAL_CARBS)))));
+					tempFood.setTotalFat(Integer.parseInt((c.getString(c.getColumnIndex(Database.KEY_FOOD_TOTAL_FAT)))));
+					tempFood.setServingSize(Double.parseDouble((c.getString(c.getColumnIndex(Database.KEY_FOOD_SERVING_SIZE)))));
 					
 					final TextView temp = new TextView(getActivity());
 					temp.setText(tempFood.getFoodName());

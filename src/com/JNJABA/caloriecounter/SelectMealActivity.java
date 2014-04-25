@@ -2,20 +2,32 @@ package com.JNJABA.caloriecounter;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class SelectMealActivity extends Activity {
+	private static Database db;
+	
+	private static LinearLayout llMeals;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_meal);
-
+		
+		db = new Database(this);
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -51,12 +63,49 @@ public class SelectMealActivity extends Activity {
 		}
 
 		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_select_meal,
-					container, false);
+		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_select_food, container, false);
+			
+			llMeals = (LinearLayout) rootView.findViewById(R.id.llMeals);
+			final Meal tempMeal = new Meal();
+			
+			try {
+				db.open();
+				
+				Cursor c = db.getMealValues();
+				
+				for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+					tempMeal.setMealName(c.getString(c.getColumnIndex(Database.KEY_MEAL_NAME)));
+					
+					final TextView temp = new TextView(getActivity());
+					temp.setText(tempMeal.getMealName());
+					temp.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							getActivity().setResult(Activity.RESULT_OK, new Intent().putExtra("meal", tempMeal));
+							getActivity().finish();
+						}
+					});
+					
+					llMeals.addView(temp);
+				}
+				
+				c.close();
+
+				db.close();
+			} catch (SQLiteException e) {
+				Log.d("SelectFoodActivity", "Error starting DB");
+			}
+			
 			return rootView;
 		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		setResult(RESULT_CANCELED);
 	}
 
 }

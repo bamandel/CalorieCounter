@@ -30,6 +30,8 @@ public class NewMealActivity extends Activity {
 	private static ArrayList<TextView> views;
 
 	private static Meal meal;
+	
+	private static Database db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class NewMealActivity extends Activity {
 
 		meal = new Meal(mMealName);
 
+		db = new Database(this);
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -112,10 +115,21 @@ public class NewMealActivity extends Activity {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					meal.setMealName(mMealName);
-
-					for (Food food : foods)
-						meal.addFood(food);
-
+					
+					try {
+						db.open();
+						db.addMealValue(meal);
+						
+						for (Food food : foods) {
+							meal.addFood(food);
+							db.addMealFoodValue(food);
+						}
+						
+						db.close();
+					} catch (Exception e) {
+						Log.d("NewMealActivity", e.getMessage());
+					}
+					
 					getActivity().setResult(Activity.RESULT_OK,new Intent().putExtra("meal", meal));
 					getActivity().finish();
 				}

@@ -135,6 +135,8 @@ public final class R {
         public static final int health_button_string=0x7f05000a;
         public static final int hello_world=0x7f050001;
         public static final int just_ate_button_string=0x7f05000b;
+        /**  Text Strings 
+         */
         public static final int just_ate_text_string=0x7f050014;
         public static final int meal_list_text_string=0x7f050024;
         public static final int meal_meal_name=0x7f050022;
