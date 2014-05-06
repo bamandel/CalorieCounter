@@ -102,6 +102,28 @@ public class Database {
 		mHelper.close();
 	}
 	
+	public void init() {
+		//                   ("Food Name", calories, potassium, totalFat, cholesterol, sodium, totalCarbs, protein, servingSize)
+		addFoodValue(new Food("Chimichanga (General)", 425, 586, 20, 9, 910, 43, 20, 174));
+		addFoodValue(new Food("Big Mac", 550, 0, 29, 75, 970, 46, 25, 215));
+		addFoodValue(new Food("Pizza (General)", 285, 184, 10, 18, 640, 36, 12, 107));
+		addFoodValue(new Food("Chicken", 250, 319, 13, 93, 91, 0, 30, 145));
+		addFoodValue(new Food("Coca-Cola", 140, 0, 0, 0, 45, 39, 0, 240));
+		addFoodValue(new Food("Water", 0, 0, 0, 0, 0, 0, 0, 100));
+		addFoodValue(new Food("Avocado", 234, 708, 21, 0, 10, 12, 3, 146));
+		addFoodValue(new Food("IBC Root Beer", 160, 0, 0, 0, 55, 43, 0, 12));
+		addFoodValue(new Food("Milk (General)", 103, 366, 2.4, 0, 107, 12, 8, 244));
+		addFoodValue(new Food("Coffee (Black)", 1, 116, 0, 0, 5, 0, .3, 237));
+		addFoodValue(new Food("Bagel w/ Cream Cheese (General)", 450, 0, 21.5, 60, 670, 54, 14, 0));
+		addFoodValue(new Food("Beans (General)", 41, 179, .2, 0, 1, 8, 2.6, 12.1));
+		
+		/*
+		 * Need to make all values double compatible
+		 * Perhaps make all values stored as milligrams instead of grams
+		 */
+		
+	}
+	
 	public long addFoodValue(Food food) {
 		ContentValues values = new ContentValues();
 		

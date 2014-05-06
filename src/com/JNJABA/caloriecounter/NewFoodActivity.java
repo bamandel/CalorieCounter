@@ -77,10 +77,10 @@ public class NewFoodActivity extends Activity {
 			
 			etFoodName = (EditText) rootView.findViewById(R.id.etFoodName);
 			etCalories = (EditText) rootView.findViewById(R.id.etCalories);
-			etPotassium = (EditText) rootView.findViewById(R.id.etPotassium);
+			//etPotassium = (EditText) rootView.findViewById(R.id.etPotassium);
 			etTotalFat = (EditText) rootView.findViewById(R.id.etTotalFat);
-			etCholesterol = (EditText) rootView.findViewById(R.id.etCholesterol);
-			etSodium = (EditText) rootView.findViewById(R.id.etSodium);
+			//etCholesterol = (EditText) rootView.findViewById(R.id.etCholesterol);
+			//etSodium = (EditText) rootView.findViewById(R.id.etSodium);
 			etTotalCarbs = (EditText) rootView.findViewById(R.id.etTotalCarbs);
 			etProtein = (EditText) rootView.findViewById(R.id.etProtein);
 			etServingSize = (EditText) rootView.findViewById(R.id.etServingSize);

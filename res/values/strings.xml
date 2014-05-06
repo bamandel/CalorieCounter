@@ -4,9 +4,9 @@
     <string name="app_name">Calorie Counter</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- Titles -->
-    
+
     <string name="title_activity_main_menu">MainMenuActivity</string>
     <string name="title_activity_food_log">FoodLog</string>
     <string name="title_activity_new_food">NewFoodActivity</string>
@@ -14,32 +14,29 @@
     <string name="title_activity_health">HealthActivity</string>
     <string name="title_activity_select_food">SelectFoodActivity</string>
     <string name="title_activity_select_meal">SelectMealActivity</string>
-    
+
     <!-- Button Strings -->
-    
+
     <string name="health_button_string">Health</string>
     <string name="just_ate_button_string">Just Ate</string>
     <string name="calendar_button_string">Calendar</string>
-    <string name="settings_button_string">Settings</string>
-    
+    <string name="profile_button_string">Profile</string>
     <string name="new_meal_button_string">New Meal</string>
     <string name="select_meals_button_string">Select Meal</string>
     <string name="new_food_button_string">New Food</string>
     <string name="select_food_button_string">Select Food</string>
-    
     <string name="submit_button_string">Submit</string>
     <string name="cancel_button_string">Cancel</string>
-    
+
     <!-- Text Strings -->
-    
+
     <string name="just_ate_text_string">Just Ate</string>
-    
     <string name="daily_dosage_text_string">Daily Dosage</string>
     <string name="daily_nutrition_text_string">Today\'s Nutrition</string>
     <string name="daily_foods_text_string">Today\'s Foods</string>
     <string name="activity_level_text_string">Activity Level:</string>
-    
     <string name="food_food_name">Food Name:</string>
+    <string name="food_consumed">Food Consumed:</string>
     <string name="food_serving_size">Serving Size:</string>
     <string name="food_calories">Calories:</string>
     <string name="food_potassium">Potassium:</string>
@@ -48,19 +45,18 @@
     <string name="food_total_carbs">Total Carbs:</string>
     <string name="food_protein">Protein:</string>
     <string name="food_sodium">Sodium:</string>
-    
     <string name="meal_meal_name">Meal Name:</string>
-    
     <string name="food_list_text_string">Food List</string>
     <string name="meal_list_text_string">Meal List</string>
-    
+
     <!-- Text hints -->
-    
+
     <string name="not_yet_recorded_hint_string">Nothing yet recorded</string>
     <string name="enter_data_hint_string">Enter data</string>
-    
+
     <!-- Picture descriptions -->
-    
+
     <string name="food_pic">Food Picture</string>
-    
+    <string name="title_activity_profile">Profile</string>
+
 </resources>

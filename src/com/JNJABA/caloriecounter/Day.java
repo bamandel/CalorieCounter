@@ -35,8 +35,9 @@ public class Day {
 	public String getDayName() {return mDay;}
 	public void setDay(String day) {mDay = day;}
 	
-	public void addFood(Food food) {
+	public void addFood(Food food, int amountEaten) {
 		Log.d("Day", "WHY ISNT THIS WORKING??");
+		food.addAmountEaten(amountEaten);
 		foodsEaten.add(food);
 		Log.d("Day", "Food added");
 		updateDay();

@@ -1,0 +1,221 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.JNJABA.caloriecounter.Profile$PlaceholderFragment" >
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal" >
+
+           <ImageView
+               android:id="@+id/ivProPic"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/ic_launcher" />
+
+           <LinearLayout
+               android:layout_width="fill_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical" >
+
+               <TextView
+                   android:id="@+id/tvUserName"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:layout_margin="10dp"
+                   android:text="TextView" />
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent" >
+
+           <TextView
+               android:id="@+id/tvUserAge"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentTop="true"
+               android:layout_margin="5dp"
+               android:text="Age:"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TextView
+               android:id="@+id/tvUserSex"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/tvUserAge"
+               android:layout_margin="5dp"
+               android:text="Sex:"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TextView
+               android:id="@+id/tvUserHeight"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/tvUserSex"
+               android:layout_margin="5dp"
+               android:text="Height:"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TextView
+               android:id="@+id/tvUserWeight"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/tvUserHeight"
+               android:layout_margin="5dp"
+               android:text="Weight"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TextView
+               android:id="@+id/tvUserBMI"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/tvUserWeight"
+               android:layout_margin="5dp"
+               android:text="BMI"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TextView
+               android:id="@+id/tvUserCalories"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/tvUserBMI"
+               android:layout_margin="5dp"
+               android:text="Calorie Intake:"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TextView
+               android:id="@+id/tvUserWeightProgram"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/tvUserCalories"
+               android:layout_margin="5dp"
+               android:text="Weight Goal:"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TextView
+               android:id="@+id/tvUserActivityLevel"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@+id/tvUserWeightProgram"
+               android:layout_margin="5dp"
+               android:text="Activity Level:"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <EditText
+               android:id="@+id/etUserAge"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/tvUserAge"
+               android:layout_toRightOf="@+id/tvUserAge"
+               android:editable="false"
+               android:ems="10" >
+
+               <requestFocus />
+           </EditText>
+           
+           <EditText
+               android:id="@+id/etUserSex"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/tvUserSex"
+               android:layout_toRightOf="@+id/tvUserSex"
+               android:editable="false"
+               android:ems="10" >
+
+               <requestFocus />
+           </EditText>
+           
+           <EditText
+               android:id="@+id/etUserHeight"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/tvUserHeight"
+               android:layout_toRightOf="@+id/tvUserHeight"
+               android:editable="false"
+               android:ems="10" >
+
+               <requestFocus />
+           </EditText>
+           
+           <EditText
+               android:id="@+id/etUserWeight"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/tvUserWeight"
+               android:layout_toRightOf="@+id/tvUserWeight"
+               android:editable="false"
+               android:ems="10" >
+
+               <requestFocus />
+           </EditText>
+           
+           <EditText
+               android:id="@+id/etUserBMI"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/tvUserBMI"
+               android:layout_toRightOf="@+id/tvUserBMI"
+               android:editable="false"
+               android:ems="10" >
+
+               <requestFocus />
+           </EditText>
+           
+           <EditText
+               android:id="@+id/etUserCalories"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/tvUserCalories"
+               android:layout_toRightOf="@+id/tvUserCalories"
+               android:editable="false"
+               android:ems="10" >
+
+               <requestFocus />
+           </EditText>
+           
+           <EditText
+               android:id="@+id/etUserWeightProgram"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/tvUserWeightProgram"
+               android:layout_toRightOf="@+id/tvUserWeightProgram"
+               android:editable="false"
+               android:ems="10" >
+
+               <requestFocus />
+           </EditText>
+           
+           <EditText
+               android:id="@+id/etUserActivityLevel"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/tvUserActivityLevel"
+               android:layout_toRightOf="@+id/tvUserActivityLevel"
+               android:editable="false"
+               android:ems="10" >
+
+               <requestFocus />
+           </EditText>
+       </RelativeLayout>
+
+</LinearLayout>

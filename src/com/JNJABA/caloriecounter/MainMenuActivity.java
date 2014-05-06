@@ -26,7 +26,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		bJustAte.setOnClickListener(this);
 		Button bMeals = (Button) findViewById(R.id.bCalendar);
 		bMeals.setOnClickListener(this);
-		Button bSettings = (Button) findViewById(R.id.bSettings);
+		Button bSettings = (Button) findViewById(R.id.bProfile);
 		bSettings.setOnClickListener(this);
 	}
 	
@@ -44,8 +44,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			//Will currently do nothing
 
 			break;
-		case R.id.bSettings:
-			
+		case R.id.bProfile:
+			startActivity(new Intent(this, ProfileActivity.class));
 			break;
 		}
 	}

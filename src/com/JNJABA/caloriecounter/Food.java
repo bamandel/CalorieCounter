@@ -9,18 +9,25 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Food implements Parcelable{
-	public static final int DAILY_CALORIES = 2000;
-	public static final int DAILY_POTASSIUM = 3500; // mg
-	public static final int DAILY_TOTAL_FAT = 65; // g
-	public static final int DAILY_SATURATED_FAT = 20; // g
-	public static final int DAILY_CHOLESTEROL = 300; // mg
-	public static final int DAILY_SODIUM = 2400; // mg
-	public static final int DAILY_TOTAL_CARBS = 300; // g
-	public static final int DAILY_DIETARY_FIBER = 25; // g
-	public static final int DAILY_PROTEIN = 50; // g
+	
+	/*
+	 * Everything is being stored in Milligrams and will
+	 * be converted when inserting and accesing the data
+	 */
+	
+	public static final int DAILY_CALORIES = 2000000;
+	public static final int DAILY_POTASSIUM = 3500;
+	public static final int DAILY_TOTAL_FAT = 65000;
+	public static final int DAILY_SATURATED_FAT = 20000;
+	public static final int DAILY_CHOLESTEROL = 300;
+	public static final int DAILY_SODIUM = 2400;
+	public static final int DAILY_TOTAL_CARBS = 300000;
+	public static final int DAILY_DIETARY_FIBER = 25000;
+	public static final int DAILY_PROTEIN = 50000;
 	
 	private String mFoodName;
 	private int mCalories, mPotassium, mTotalFat, mCholesterol, mSodium, mTotalCarbs, mProtein;
+	private int amountEaten;
 	private double mServingSize;
 	private Bitmap foodPic = null;
 	private Map<String, Integer> moreCarbs, moreFat;
@@ -66,20 +73,23 @@ public class Food implements Parcelable{
 		moreFat = new HashMap<String, Integer>();
 	}
 	
-	public Food(String foodName, int calories, int potassium, int totalFat, int cholesterol, int sodium, int totalCarbs, int protein, double servingSize) {
+	public Food(String foodName, double calories, double potassium, double totalFat, double cholesterol, double sodium, double totalCarbs, double protein, double servingSize) {
 		mFoodName = foodName;
-		mPotassium = potassium;
-		mCalories = calories;
-		mTotalFat = totalFat;
-		mCholesterol = cholesterol;
-		mSodium = sodium;
-		mTotalCarbs = totalCarbs;
-		mProtein = protein;
+		setPotassium(potassium);
+		setCalories(calories);
+		setTotalFat(totalFat);
+		setCholesterol(cholesterol);
+		setSodium(sodium);
+		setTotalCarbs(totalCarbs);
+		setProtein(protein);
 		mServingSize = servingSize;
 		
 		moreCarbs = new HashMap<String, Integer>();
 		moreFat = new HashMap<String, Integer>();
 	}
+	
+	public void addAmountEaten(double amount) {amountEaten = (int) amount * 1000;}
+	public int getAmountEaten() {return amountEaten;}
 	
 	public void addFatNutrition(String name, int quantity) {moreFat.put(name, quantity);}
 	public int getFatNutritionValue(String name) {return moreFat.get(name);}
@@ -132,19 +142,19 @@ public class Food implements Parcelable{
 	public String getFoodName() {return mFoodName;}
 	public void setFoodName(String mFoodName) {this.mFoodName = mFoodName;}
 	public int getCalories() {return mCalories;}
-	public void setCalories(int mCalories) {this.mCalories = mCalories;}
+	public void setCalories(double mCalories) {this.mCalories = (int) mCalories * 1000;}
 	public int getPotassium() {return mPotassium;}
-	public void setPotassium(int potassium) {mPotassium = potassium;}
+	public void setPotassium(double potassium) {mPotassium = (int) potassium * 1000;}
 	public int getTotalFat() {return mTotalFat;}
-	public void setTotalFat(int mTotalFat) {this.mTotalFat = mTotalFat;}
+	public void setTotalFat(double mTotalFat) {this.mTotalFat = (int) mTotalFat * 1000;}
 	public int getCholesterol() {return mCholesterol;}
-	public void setCholesterol(int cholesterol) {mCholesterol = cholesterol;}
+	public void setCholesterol(double cholesterol) {mCholesterol = (int) cholesterol * 1000;}
 	public int getSodium() {return mSodium;}
-	public void setSodium(int mSodium) {this.mSodium = mSodium;}
+	public void setSodium(double mSodium) {this.mSodium = (int) mSodium * 1000;}
 	public int getTotalCarbs() {return mTotalCarbs;}
-	public void setTotalCarbs(int mTotalCarbs) {this.mTotalCarbs = mTotalCarbs;}
+	public void setTotalCarbs(double mTotalCarbs) {this.mTotalCarbs = (int) (mTotalCarbs * 1000);}
 	public int getProtein() {return mProtein;}
-	public void setProtein(int mProtein) {this.mProtein = mProtein;}
+	public void setProtein(double mProtein) {this.mProtein = (int) mProtein * 1000;}
 	public double getServingSize() {return mServingSize;}
 	public void setServingSize(double size) {mServingSize = size;}
 

@@ -46,6 +46,10 @@
             android:name="com.JNJABA.caloriecounter.SelectMealActivity"
             android:label="@string/title_activity_select_meal" >
         </activity>
+        <activity
+            android:name="com.JNJABA.caloriecounter.ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
     </application>
 
 </manifest>

@@ -127,7 +127,7 @@ public class JustAteActivity extends Activity {
 				Log.d("Just Ate", "getting food");
 				Food food = (Food) data.getParcelableExtra("food");
 				Log.d("Just Ate", "storing food");
-				day.addFood(food);
+				day.addFood(food, 0);
 			}
 			// code 1 will return meal
 			else if (requestCode == 1) {
