@@ -16,7 +16,7 @@ import android.widget.EditText;
 
 public class NewFoodActivity extends Activity {
 	private static String mFoodName = null;
-	private static int mCalories, mPotassium, mTotalFat, mCholesterol, mSodium, mTotalCarbs, mProtein = -1;
+	private static double mCalories, mPotassium, mTotalFat, mCholesterol, mSodium, mTotalCarbs, mProtein = -1;
 	private static double mServingSize = -1;
 	
 	private static EditText etFoodName, etCalories, etPotassium, etTotalFat, etCholesterol, etSodium, etTotalCarbs, etProtein, etServingSize;
@@ -75,6 +75,8 @@ public class NewFoodActivity extends Activity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_new_food, container, false);
 			
+			Log.d("NewFoodActivity", "New Food Activity ready");
+			
 			etFoodName = (EditText) rootView.findViewById(R.id.etFoodName);
 			etCalories = (EditText) rootView.findViewById(R.id.etCalories);
 			//etPotassium = (EditText) rootView.findViewById(R.id.etPotassium);
@@ -104,47 +106,51 @@ public class NewFoodActivity extends Activity {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					
+					Log.d("NewFoodActivity", "OnClick entered");
+					
 					if((mFoodName = etFoodName.getText().toString()).equals(""))
-						mFoodName = "null";
+						mFoodName = "No name";
 					
-					if(isInteger(etCalories.getText().toString()))
-						mCalories = Integer.parseInt(etCalories.getText().toString());
+					if(isDouble(etCalories.getText().toString()))
+						mCalories = Double.parseDouble(etCalories.getText().toString());
 					else
-						mCalories = -1;
+						mCalories = 0;
 					
-					if(isInteger(etPotassium.getText().toString()))
-						mPotassium = Integer.parseInt(etPotassium.getText().toString());
+					/*if(isDouble(etPotassium.getText().toString()))
+						mPotassium = Double.parseDouble(etPotassium.getText().toString());
 					else
-						mPotassium = -1;
+						mPotassium = -1;*/
 					
-					if(isInteger(etTotalFat.getText().toString()))
-						mTotalFat = Integer.parseInt(etTotalFat.getText().toString());
+					if(isDouble(etTotalFat.getText().toString()))
+						mTotalFat = Double.parseDouble(etTotalFat.getText().toString());
 					else
-						mTotalFat = -1;
+						mTotalFat = 0;
 					
-					if(isInteger(etCholesterol.getText().toString()))
-						mCholesterol = Integer.parseInt(etCholesterol.getText().toString());
+					/*if(isDouble(etCholesterol.getText().toString()))
+						mCholesterol = Double.parseDouble(etCholesterol.getText().toString());
 					else mCholesterol = -1;
 					
-					if(isInteger(etSodium.getText().toString()))
-						mSodium = Integer.parseInt(etSodium.getText().toString());
+					if(isDouble(etSodium.getText().toString()))
+						mSodium = Double.parseDouble(etSodium.getText().toString());
 					else
-						mSodium = -1;
+						mSodium = -1;*/
 					
-					if(isInteger(etTotalCarbs.getText().toString()))
-						mTotalCarbs = Integer.parseInt(etTotalCarbs.getText().toString());
+					if(isDouble(etTotalCarbs.getText().toString()))
+						mTotalCarbs = Double.parseDouble(etTotalCarbs.getText().toString());
 					else
-						mTotalCarbs = -1;
+						mTotalCarbs = 0;
 					
-					if(isInteger(etProtein.getText().toString()))
-						mProtein = Integer.parseInt(etProtein.getText().toString());
+					if(isDouble(etProtein.getText().toString()))
+						mProtein = Double.parseDouble(etProtein.getText().toString());
 					else
-						mProtein = -1;
+						mProtein = 0;
 					
 					if(isDouble(etServingSize.getText().toString()))
 						mServingSize = Double.parseDouble(etServingSize.getText().toString());
 					else
-						mServingSize = -1;
+						mServingSize = 0;
+					
+					Log.d("NewFoodActivity", "Values set");
 					
 					food.setFoodName(mFoodName);
 					food.setCalories(mCalories);
@@ -155,6 +161,8 @@ public class NewFoodActivity extends Activity {
 					food.setTotalCarbs(mTotalCarbs);
 					food.setProtein(mProtein);
 					food.setServingSize(mServingSize);
+					
+					Log.d("NewFoodActivity", "Creating food item");
 					
 					try {
 						db.open();

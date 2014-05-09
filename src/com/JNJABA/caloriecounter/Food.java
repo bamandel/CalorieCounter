@@ -27,7 +27,6 @@ public class Food implements Parcelable{
 	
 	private String mFoodName;
 	private int mCalories, mPotassium, mTotalFat, mCholesterol, mSodium, mTotalCarbs, mProtein;
-	private int amountEaten;
 	private double mServingSize;
 	private Bitmap foodPic = null;
 	private Map<String, Integer> moreCarbs, moreFat;
@@ -88,9 +87,6 @@ public class Food implements Parcelable{
 		moreFat = new HashMap<String, Integer>();
 	}
 	
-	public void addAmountEaten(double amount) {amountEaten = (int) amount * 1000;}
-	public int getAmountEaten() {return amountEaten;}
-	
 	public void addFatNutrition(String name, int quantity) {moreFat.put(name, quantity);}
 	public int getFatNutritionValue(String name) {return moreFat.get(name);}
 	public void addCarbNutrition(String name, int quantity) {moreCarbs.put(name, quantity);}
@@ -132,8 +128,8 @@ public class Food implements Parcelable{
 				"\nCalories: " + mCalories +
 				"\nTotal Fat: " + mTotalFat + "    " + getDailyTotalFat() + "%" +
 				//getSpecialItemsToString("fat") +
-				"\nTotal Cholesterol: " + mCholesterol + "    " + getDailyCholesterol() + "%" +
-				"\nSodium: " + mSodium + "    " + getDailySodium() + "%" +
+				//"\nTotal Cholesterol: " + mCholesterol + "    " + getDailyCholesterol() + "%" +
+				//"\nSodium: " + mSodium + "    " + getDailySodium() + "%" +
 				"\nTotal Carbs: " + mTotalCarbs + "    " + getDailyTotalCarbs() + "%" +
 				//getSpecialItemsToString("carbs") +
 				"\nProtein: " + mProtein + "    " + getDailyProtein() + "%";
@@ -141,21 +137,21 @@ public class Food implements Parcelable{
 	
 	public String getFoodName() {return mFoodName;}
 	public void setFoodName(String mFoodName) {this.mFoodName = mFoodName;}
-	public int getCalories() {return mCalories;}
+	public double getCalories() {return mCalories / 1000;}
 	public void setCalories(double mCalories) {this.mCalories = (int) mCalories * 1000;}
-	public int getPotassium() {return mPotassium;}
+	public double getPotassium() {return mPotassium / 1000;}
 	public void setPotassium(double potassium) {mPotassium = (int) potassium * 1000;}
-	public int getTotalFat() {return mTotalFat;}
+	public double getTotalFat() {return mTotalFat / 1000;}
 	public void setTotalFat(double mTotalFat) {this.mTotalFat = (int) mTotalFat * 1000;}
-	public int getCholesterol() {return mCholesterol;}
+	public double getCholesterol() {return mCholesterol / 1000;}
 	public void setCholesterol(double cholesterol) {mCholesterol = (int) cholesterol * 1000;}
-	public int getSodium() {return mSodium;}
+	public double getSodium() {return mSodium / 1000;}
 	public void setSodium(double mSodium) {this.mSodium = (int) mSodium * 1000;}
-	public int getTotalCarbs() {return mTotalCarbs;}
+	public double getTotalCarbs() {return mTotalCarbs / 1000;}
 	public void setTotalCarbs(double mTotalCarbs) {this.mTotalCarbs = (int) (mTotalCarbs * 1000);}
-	public int getProtein() {return mProtein;}
+	public double getProtein() {return mProtein / 1000;}
 	public void setProtein(double mProtein) {this.mProtein = (int) mProtein * 1000;}
-	public double getServingSize() {return mServingSize;}
+	public double getServingSize() {return mServingSize / 1000;}
 	public void setServingSize(double size) {mServingSize = size;}
 
 	@Override

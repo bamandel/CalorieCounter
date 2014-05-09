@@ -1,9 +1,16 @@
 package com.JNJABA.caloriecounter;
 
+import java.io.IOException;
+
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +19,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class JustAteActivity extends Activity {
 	private static Button bNewFood, bNewMeal, bSelectFood, bSelectMeal;
@@ -125,9 +134,30 @@ public class JustAteActivity extends Activity {
 			// code 0 will return food
 			if (requestCode == 0) {
 				Log.d("Just Ate", "getting food");
-				Food food = (Food) data.getParcelableExtra("food");
+				final Food food = (Food) data.getParcelableExtra("food");
 				Log.d("Just Ate", "storing food");
-				day.addFood(food, 0);
+				
+				final EditText input = new EditText(JustAteActivity.this);
+				input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+				input.setInputType(InputType.TYPE_CLASS_NUMBER |
+						InputType.TYPE_NUMBER_FLAG_DECIMAL);
+				
+				final AlertDialog alert = new AlertDialog.Builder(JustAteActivity.this).create();
+				alert.setTitle("How much eaten?");
+				alert.setMessage("Please enter how much food you ate in grams");
+				alert.setView(input);
+				alert.setCancelable(true);
+				alert.setButton(DialogInterface.BUTTON_POSITIVE, "Submit", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						double temp = Double.parseDouble(input.getText().toString());
+						day.addFood(food, temp);
+					}
+				});
+				alert.show();
+				
 			}
 			// code 1 will return meal
 			else if (requestCode == 1) {

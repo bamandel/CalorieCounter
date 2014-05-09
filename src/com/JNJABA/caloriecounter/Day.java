@@ -6,10 +6,11 @@ import java.util.Calendar;
 import android.util.Log;
 
 public class Day {
-	private static String mDay;
-	private static final ArrayList<Food> foodsEaten = new ArrayList<Food>();
-	private static final ArrayList<Meal> mealsEaten = new ArrayList<Meal>();
-	private static int totalCalories, totalFat, totalCholesterol, totalSodium, totalCarbs, totalProtein, totalPotassium = 0;
+	private String mDay;
+	private final ArrayList<Food> foodsEaten = new ArrayList<Food>();
+	private final ArrayList<Meal> mealsEaten = new ArrayList<Meal>();
+	private double totalCalories, totalFat, totalCholesterol, totalSodium, totalCarbs, totalProtein, totalPotassium = 0;
+	private double amountEaten;
 	
 	public Day() {
 		mDay = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
@@ -35,9 +36,9 @@ public class Day {
 	public String getDayName() {return mDay;}
 	public void setDay(String day) {mDay = day;}
 	
-	public void addFood(Food food, int amountEaten) {
+	public void addFood(Food food, double eaten) {
 		Log.d("Day", "WHY ISNT THIS WORKING??");
-		food.addAmountEaten(amountEaten);
+		amountEaten = eaten;
 		foodsEaten.add(food);
 		Log.d("Day", "Food added");
 		updateDay();
@@ -58,15 +59,18 @@ public class Day {
 	}
 	
 	public void updateDay() {
+		double temp;
 		
 		for(int i = 0; i < foodsEaten.size(); i++) {
-			totalCalories += foodsEaten.get(i).getCalories();
-			totalFat += foodsEaten.get(i).getTotalFat();
-			totalCholesterol += foodsEaten.get(i).getCholesterol();
-			totalSodium += foodsEaten.get(i).getSodium();
-			totalCarbs += foodsEaten.get(i).getTotalCarbs();
-			totalProtein += foodsEaten.get(i).getProtein();
-			totalPotassium += foodsEaten.get(i).getPotassium();
+			temp = foodsEaten.get(i).getServingSize() / amountEaten;
+			
+			totalCalories += foodsEaten.get(i).getCalories() * temp;
+			totalFat += foodsEaten.get(i).getTotalFat() * temp;
+			totalCholesterol += foodsEaten.get(i).getCholesterol() * temp;
+			totalSodium += foodsEaten.get(i).getSodium() * temp;
+			totalCarbs += foodsEaten.get(i).getTotalCarbs() * temp;
+			totalProtein += foodsEaten.get(i).getProtein() * temp;
+			totalPotassium += foodsEaten.get(i).getPotassium() * temp;
 		}
 		for(int i = 0; i < mealsEaten.size(); i++) {
 			totalCalories += mealsEaten.get(i).getTotalCalories();
@@ -95,12 +99,12 @@ public class Day {
 		resetValues();
 	}
 	
-	public int getTotalCalories() {return totalCalories;}
-	public int getTotalFat() {return totalFat;}
-	public int getTotalCholesterol() {return totalCholesterol;}
-	public int getTotalSodium() {return totalSodium;}
-	public int getTotalCarbs() {return totalCarbs;}
-	public int getTotalProtein() {return totalProtein;}
+	public double getTotalCalories() {return totalCalories;}
+	public double getTotalFat() {return totalFat;}
+	public double getTotalCholesterol() {return totalCholesterol;}
+	public double getTotalSodium() {return totalSodium;}
+	public double getTotalCarbs() {return totalCarbs;}
+	public double getTotalProtein() {return totalProtein;}
 	
 	private String foodsToString() {
 		String foods = "";
@@ -131,9 +135,9 @@ public class Day {
 	public String nutritionToString() {
 		return "Today's Calories: " + totalCalories + "\n" +
 				"Today's Total Fat: " + totalFat + "\n" +
-				"Today's Cholesterol: " + totalCholesterol + "\n" +
-				"Today's Sodium: " + totalSodium + "\n" +
-				"Today's Potassium: " + totalPotassium + "\n" +
+				//"Today's Cholesterol: " + totalCholesterol + "\n" +
+				//"Today's Sodium: " + totalSodium + "\n" +
+				//"Today's Potassium: " + totalPotassium + "\n" +
 				"Today's Carbs: " + totalCarbs + "\n" +
 				"Today's Protein: " + totalProtein;
 	}

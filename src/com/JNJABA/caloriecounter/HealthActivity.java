@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class HealthActivity extends Activity {
 	private static Day day;
 	private static LinearLayout llDailyFoods, llDailyNutrition;
+	private static TextView tvDailyFoodHint, tvDailyNutritionHint;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +71,8 @@ public class HealthActivity extends Activity {
 				
 				llDailyFoods = (LinearLayout) rootView.findViewById(R.id.llDailyFoods);
 				llDailyNutrition = (LinearLayout) rootView.findViewById(R.id.llDailyNutrition);
-				
-				llDailyFoods.removeAllViews();
-				llDailyNutrition.removeAllViews();
+				tvDailyFoodHint = (TextView) rootView.findViewById(R.id.tvDailyFoodHint);
+				tvDailyNutritionHint = (TextView) rootView.findViewById(R.id.tvDailyNutritionHint);
 
 				ArrayList<Food> foodsEaten = day.getFoods();
 				ArrayList<Meal> mealsEaten = day.getMeals();
@@ -80,6 +80,9 @@ public class HealthActivity extends Activity {
 				Log.d("HealthActivity", "Lists created");
 				
 				if (!foodsEaten.isEmpty()) {
+					llDailyFoods.removeView(tvDailyFoodHint);
+					llDailyNutrition.removeView(tvDailyNutritionHint);
+					
 					Log.d("HealthActivity", "Foods is not empty");
 					for (int i = 0; i < foodsEaten.size(); i++) {
 						TextView foodView = new TextView(getActivity());
